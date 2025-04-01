@@ -8,30 +8,56 @@ Professor: Everson
 
 BPMN do sistema de reserva de sala:
 
-[inicio] -> [receber pedido de cadastro] -> [verificar disponibilidade] -> {sala disponível?}
-                                                    -> [sim]
-                                                        -> [fazer a reserva da sala, para o usuário]
-                                                    -> [não]
-                                                        -> [informar o cliente que não será possível a reserva]
+[inicio] -> [receber pedido de cadastro] -> [verificar disponibilidade] -> {sala disponível?}<br>
+                                                    -> [sim]<br>
+                                                        -> [fazer a reserva da sala, para o usuário]<br>
+                                                    -> [não]<br>
+                                                        -> [informar o cliente que não será possível a reserva]<br>
 
 
 UML do sistema de reserva de salas:
 
 
-+----------------------------+                +-----------------------------+           +----------------------+
-         CLIENTE                                          RESERVA                                SALA
-+----------------------------+                +-----------------------------+           +----------------------+
-  - id: int                                      - id: int                                  - id: int
-  - nome: string                                 - dataHora: dateTime                       - nome: string
-  - email: sring                                 - status: string                           - capacidade: int
-+----------------------------+                   - duração: int                         +----------------------+
-  + realizarPedidoDeReserva()                 +-----------------------------+     
-+----------------------------+                   + verificarDisponibilidade()
-                                                 + confirmarPedido()
-                                                 + informarCliente()
-                                              +-----------------------------+
++----------------------------+<br>
+         CLIENTE<br>
++----------------------------+<br>                 
+  . id: int<br>
+  . nome: string<br>
+  . email: string<br>
++----------------------------+<br>
+  . realizarPedidoDeReserva()    
++----------------------------+
 
 
-cliente 1 ------ 0 reservas                                 reserva 0 ------ 1 sala
-  - Um CLIENTE pode ter várias RESERVAS.                      -Várias RESERVAS equivalem a apenas uma SALA.
-  - Várias RESERVAS podem pertencer a um único CLIENTE        -Uma SALA pode ter várias RESERVAS
++-----------------------------+<br>
+ RESERVA<br>
++-----------------------------+<br>
+ . id: int<br>
+ . dataHora: dateTime<br>
+ . status: string<br>
+ . duração: int<br>
++-----------------------------+<br>
+   . verificarDisponibilidade()<br>
+   . confirmarPedido()<br>
+   . informarCliente()<br>
++-----------------------------+<br>
+
+ 
++----------------------+<br>
+SALA<br>
++----------------------+<br>
+. id: int <br>
+. nome:string <br>
+. capacidade <br>
++----------------------+
+<br>
+<br>
+
+cliente 1 ------ 0 reservas
+  - Um CLIENTE pode ter várias RESERVAS.
+  - Várias RESERVAS podem pertencer a um único CLIENTE
+
+ reserva 0 ------ 1 sala
+ - Várias RESERVAS equivalem a apenas uma SALA.
+ - Uma SALA pode ter várias RESERVAS
+
